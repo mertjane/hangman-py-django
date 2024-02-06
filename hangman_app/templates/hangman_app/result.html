@@ -1,0 +1,17 @@
+<!-- hangman_app/templates/hangman_app/result.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hangman Game Result</title>
+</head>
+<body>
+    <h1>{{ result_message }}</h1>
+    {% if game.is_winner %}
+        <p>The word was: {{ game.word_to_guess }}</p>
+    {% elif game.attempts_left == 0 %}
+        <p>The correct word was: {{ game.word_to_guess }}</p>
+    {% endif %}
+    <a href="{% url 'start_game' %}">Play Again</a>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!-- hangman_app/templates/hangman_app/play_game.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hangman Game</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'hangman_app/styles.css' %}">
+</head>
+<body>
+    <h1>Hangman Game</h1>
+    <div class="wrapper">
+    <p class="word">{% for letter in game.word_to_guess %}{% if letter in game.guessed_letters %}{{ letter }}{% else %}_{% endif %} {% endfor %}</p>
+    <p class="attempts">Incorrect guesses: {{ game.attempts_left }}</p>
+    <p class="guessed-letters">Guessed letters: {{ game.guessed_letters }}</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Guess">
+    </form>
+    </div>
+</body>
+</html>
